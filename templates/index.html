@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>荷山チェックアプリ</title>
+    <script src="{{ url_for('static', filename='jquery.js') }}" defer></script>
+    <script src="{{ url_for('static', filename='jsQR.js') }}" defer></script>
+    <script src="{{ url_for('static', filename='script.js') }}" defer></script>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+    <div id="overlay" class="overlay" style="visibility: hidden;">
+        処理中...
+    </div>
+    <h1>荷山チェックアプリ</h1>
+    <div class="btnSubmit" id="submit">決定</div>
+    <div class="main_container">
+        <div class="left">
+            <div class="caption_box">
+                <h1 class="caption">カメラ</h1>
+                <div>
+                    <div id="video-container">
+                        <video id="video" autoplay></video>
+                        <button id="reconnect">🔄</button>
+                    </div>
+                    <div id="photo-container">
+                        <div class="photo">
+                            <b>荷山全体</b>
+                            <img id="photo1" class="preview" src="{{ url_for('static', filename='white.png') }}" data-original-src="{{ url_for('static', filename='white.png') }}">
+                            <div class="flex">
+                                <button class="btnCamera" id="capture1">📷</button>
+                                <button class="btnErase" id="clear1">🗑️</button>
+                            </div>
+                        </div>
+                        <div class="photo">
+                            <b>かんばん</b>
+                            <img id="photo2" class="preview" src="{{ url_for('static', filename='white.png') }}" data-original-src="{{ url_for('static', filename='white.png') }}">
+                            <div class="flex">
+                                <button class="btnCamera" id="capture2">📷</button>
+                                <button class="btnErase" id="clear2">🗑️</button>
+                            </div>
+                        </div>
+                        <div class="photo">
+                            <b>QRコード</b>
+                            <img id="photo3" class="preview" src="{{ url_for('static', filename='white.png') }}" data-original-src="{{ url_for('static', filename='white.png') }}">
+                            <div class="flex">
+                                <button class="btnCamera" id="capture3">📷</button>
+                                <button class="btnErase" id="clear3">🗑️</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="right">
+            <div class="caption_box flex">
+                <h1 class="caption">チェック</h1>
+                <div class="toggle-container">
+                    <div class="toggle-heading">低荷山</div>
+                    <div class="toggle-wrapper">
+                        <span class="toggle-label">OK（高）</span>
+                        <label class="toggle-button">
+                            <input type="checkbox" id="checkNiyamaLow">
+                            <span></span>
+                        </label>
+                        <span class="toggle-label">NG（低）</span>
+                    </div>
+                </div>
+                <div class="toggle-container">
+                    <div class="toggle-heading">コース混載</div>
+                    <div class="toggle-wrapper">
+                        <span class="toggle-label">ON（単）</span>
+                        <label class="toggle-button">
+                            <input type="checkbox" id="checkKonsai">
+                            <span></span>
+                        </label>
+                        <span class="toggle-label">NG（混載）</span>
+                    </div>
+                </div><br>
+                <div class="dropdown-container">
+                    <label for="dropdown">ダミー箱の数</label>
+                    <select id="selectDummyBox" name="dropdown">
+                        <option value="0" selected>0</option>
+                        <option value="1">1</option>
+                        <option value="2">2</option>
+                        <option value="3">3</option>
+                        <option value="4">4</option>
+                        <option value="5+">5以上</option>
+                    </select>
+                </div>
+            </div>
+            <div class="caption_box">
+                <h1 class="caption">QRコード</h1>
+                <div class="qrdata_result qrdata_notfound" id="qrResult">QRコード　読み取り未</div>
+                <div class="qrdata_container">
+                    <div class="item"><span class="key">仕入先工区出荷場</span> <input id="inputSiire"></div>
+                    <div class="item"><span class="key">受入</span> <input id="inputUkeire"></div>
+                    <div class="item"><span class="key">オーダーNo</span> <input id="inputOrder"></div>
+                    <div class="item"><span class="key">品番</span> <input id="inputHinban"></div>
+                    <div class="item"><span class="key">所番地</span> <input id="inputTokoro"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

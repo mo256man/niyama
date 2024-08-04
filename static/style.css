@@ -1,0 +1,317 @@
+body {
+    font-family: Arial, sans-serif;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin: 0;
+    padding: 0;
+}
+
+h1 {
+    margin: 5px 0;
+}
+
+.main_container {
+    display: flex;
+    gap: 2em;
+    width: 90%;
+}
+
+.left {
+    width: 50%;
+}
+.right {
+    width: 50%;
+}
+
+.flex {
+    display: flex;
+}
+
+/* キャプションボックス */
+.caption_box{
+    position: relative;
+    margin-top: 1em;
+    padding: 1em 2em;
+    border: 1px solid black;
+}
+.caption_box .caption{
+    position: absolute;
+    top: 0;
+    left: 0;
+    font-size: 1em;
+    padding: 0 1em;
+    margin: 0;
+    background-color: white;
+    transform: translateY(-50%) translateX(1em);
+}
+
+/* QRコードを分解したデータの表示 */
+.qrdata_result {
+    text-align: center;
+}
+.qrdata_container {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);; /* 自動調整で1行または2行 */
+    column-gap: 3em;
+}
+qrdata_container .item {
+    border: 1px solid black;
+    padding: 10px;
+    background-color: #f0f0f0;
+}
+qrdata_container .key {
+    font-weight: bold;
+    width: 10em;
+}
+
+.qrdata_found {
+    color: black;
+    font-weight: normal;
+}
+
+.qrdata_notfound {
+    color: red;
+    font-weight: bold;
+}
+
+
+
+/* コンテナのスタイル */
+.toggle-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 1em;
+}
+
+/* 見出しのスタイル */
+.toggle-heading {
+    margin-bottom: 0.5em;
+    text-align: center;
+}
+
+/* トグルボタンとラベルのラッパー */
+.toggle-wrapper {
+    display: flex;
+    align-items: center; /* ラベルとトグルボタンを垂直方向に中央揃え */
+}
+
+/* トグルラベルのスタイル */
+.toggle-label {
+    font-size: 1em;
+    margin: 0 0.5em;
+    display: flex;
+    align-items: center; /* ラベルテキストを垂直方向に中央揃え */
+}
+
+/* トグルボタンのスタイル */
+.toggle-button {
+    display: inline-block;
+    position: relative;
+    width: 5em;
+    height: 2em;
+    border-radius: 50px;
+    background-color: #dddddd;
+    cursor: pointer;
+    transition: background-color .4s;
+}
+
+/* スライダー部分 */
+.toggle-button span {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 2em;
+    height: 2em;
+    border-radius: 50%;
+    background-color: #fff;
+    box-shadow: 0 0 5px rgb(0 0 0 / 20%);
+    content: '';
+    transition: left .4s;
+}
+
+/* トグルボタンがオンの状態 */
+.toggle-button input:checked + span {
+    left: 3em;
+}
+
+.toggle-button input {
+    display: none;
+}
+
+
+
+
+/* コンテナのスタイル */
+.toggle-container {
+    display: block; /* ブロックレベルに設定 */
+    margin-bottom: 1em; /* 下に余白を追加 */
+}
+
+/* 見出しのスタイル */
+.toggle-heading {
+    margin-bottom: 0.5em; /* トグルボタンとの間にスペースを追加 */
+    font-size: large;
+    font-weight: bold;
+}
+
+/* トグルボタンのスタイル */
+.toggle-button {
+    display: inline-block;
+    position: relative;
+    width: 5em;
+    height: 2em;
+    border-radius: 50px;
+    background-color: #dddddd;
+    cursor: pointer;
+    transition: background-color .4s;
+    border: gray 1px solid;
+}
+
+/* スライダー部分 */
+.toggle-button span {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 2em;
+    height: 2em;
+    border-radius: 50%;
+    background-color: #fff;
+    box-shadow: 0 0 5px rgb(0 0 0 / 20%);
+    content: '';
+    transition: left .4s;
+    border: gray 1px solid;
+}
+
+/* トグルボタンがオンの状態 */
+.toggle-button input:checked + span {
+    background-color: #4bd865;
+    left: 3em; /* スライダーが右に移動する位置 */
+}
+
+.toggle-button input {
+    display: none;
+}
+
+/* プルダウンコンテナのスタイル */
+.dropdown-container {
+    text-align: center;
+    margin-top: 20px;
+}
+
+/* ラベルのスタイル */
+label {
+    display: block;
+    font-size: 1.2em;
+    margin-bottom: 5px;
+}
+
+/* プルダウンリストのスタイル */
+select {
+    width: 4em;
+    padding: 10px;
+    font-size: 1em;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    background-color: #f2f2f2;
+    cursor: pointer;
+}
+
+/* プルダウンリストのオプションのスタイル */
+select option {
+    padding: 10px;
+}
+
+
+/* オーバーレイ */
+.overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.8);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: white;
+    font-size: 36px;
+    font-weight: bold;
+    z-index: 9999;
+}
+
+/* オーバーレイを非表示にするためのクラス */
+.hidden {
+    display: none;
+}
+
+
+#video-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-bottom: 20px;
+}
+
+#video {
+    width: 100%;
+    max-width: 640px;
+    height: auto;
+    border: 1px solid #ccc;
+}
+
+#photo-container {
+    display: flex;
+    justify-content: space-around;
+    width: 100%;
+    max-width: 800px;
+    margin-bottom: 20px;
+}
+
+.photo {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.preview {
+    width: 150px;
+    height: 150px;
+    object-fit: cover;
+    border: 1px solid #ccc;
+    margin-bottom: 5px;
+}
+
+button {
+    margin: 5px;
+}
+
+#qr-message {
+    margin: 20px;
+    font-size: 18px;
+}
+
+.btnSubmit {
+    border: 2px solid black;
+    border-radius: 5px;
+    background-color: aquamarine;
+    width: 5em;
+    height: 3em;
+    line-height: 3em;
+    user-select: none;
+    text-align: center;
+}
+
+.btnCamera {
+    width: 3em;
+    height: 2em;
+    font-size: x-large;
+}
+
+.btnErase {
+    width: 2em;
+    height: 2em;
+    font-size: x-large;
+}
