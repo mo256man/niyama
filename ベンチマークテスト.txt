@@ -1,0 +1,98 @@
+sudo apt update
+sudo apt install cpufrequtils
+sudo apt install sysbench
+
+sudo /etc/init.d/cpufrequtil restart
+
+
+sysbench cpu run
+
+結果：
+sysbench 1.0.20 (using system LuaJIT 2.1.0-beta3)
+
+Running the test with following options:
+Number of threads: 1
+Initializing random number generator from current time
+
+
+Prime numbers limit: 10000
+
+Initializing worker threads...
+
+Threads started!
+
+CPU speed:
+    events per second:   119.23
+
+General statistics:
+    total time:                          10.0082s
+    total number of events:              1194
+
+Latency (ms):
+         min:                                    8.34
+         avg:                                    8.38
+         max:                                   25.37
+         95th percentile:                        8.43
+         sum:                                10004.86
+
+Threads fairness:
+    events (avg/stddev):           1194.0000/0.00
+    execution time (avg/stddev):   10.0049/0.00
+
+
+
+clamavをインストール
+sudo apt install clamav clamav-daemon
+freshclam
+
+wget -q https://secure.eicar.org/eicar.com
+clamscan eicar.com
+
+
+sudo clamscan -r /
+にて全ディレクトリスキャンした結果
+
+----------- SCAN SUMMARY -----------
+Known viruses: 2050762
+Engine version: 0.103.10
+Scanned directories: 38775
+Scanned files: 168173
+Infected files: 0
+Total errors: 12491
+Data scanned: 8640.85 MB
+Data read: 10237.27 MB (ratio 0.84:1)
+Time: 2379.543 sec (39 m 39 s)
+Start Date: 2024:09:11 07:46:04
+End Date:   2024:09:11 08:25:43
+
+clamscan中にsysbench cpu runした結果
+sysbench 1.0.20 (using system LuaJIT 2.1.0-beta3)
+
+Running the test with following options:
+Number of threads: 1
+Initializing random number generator from current time
+
+
+Prime numbers limit: 10000
+
+Initializing worker threads...
+
+Threads started!
+
+CPU speed:
+    events per second:   119.35
+
+General statistics:
+    total time:                          10.0070s
+    total number of events:              1195
+
+Latency (ms):
+         min:                                    8.34
+         avg:                                    8.37
+         max:                                    9.05
+         95th percentile:                        8.43
+         sum:                                10002.90
+
+Threads fairness:
+    events (avg/stddev):           1195.0000/0.00
+    execution time (avg/stddev):   10.0029/0.00
