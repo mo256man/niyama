@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Canvas with Scaled Rectangle</title>
+</head>
+<body>
+    <canvas id="canvas"></canvas>
+
+    <script>
+        // キャンバス要素を取得
+        const canvas = document.getElementById('canvas');
+        
+        // 描画サイズを設定 (描画領域の実サイズ)
+        canvas.width = 320;
+        canvas.height = 240;
+
+        // 表示サイズを設定 (スタイルで制御されるサイズ)
+        canvas.style.width = '640px'; // 表示上の幅
+        canvas.style.height = '480px'; // 表示上の高さ
+
+        // キャンバスの描画コンテキストを取得
+        const context = canvas.getContext('2d');
+
+        // キャンバスに背景色を塗る
+        context.fillStyle = '#cccccc'; // 背景色を設定（グレー）
+        context.fillRect(0, 0, canvas.width, canvas.height); // キャンバス全体を塗りつぶし
+
+        // 画像オブジェクトを作成
+        const img = new Image();
+        img.src = 'image.png'; // 画像ファイルへのパス
+
+        // 画像がロードされた後に処理を実行
+        img.onload = function() {
+            // キャンバスのアスペクト比に合わせて画像を拡大縮小する
+            const canvasAspect = canvas.width / canvas.height;
+            const imageAspect = img.width / img.height;
+            let drawWidth, drawHeight, offsetX, offsetY;
+
+            if (imageAspect > canvasAspect) {
+                // 画像の方が横長の場合
+                drawWidth = canvas.width;
+                drawHeight = canvas.width / imageAspect;
+                offsetX = 0;
+                offsetY = (canvas.height - drawHeight) / 2;
+            } else {
+                // 画像の方が縦長の場合
+                drawWidth = canvas.height * imageAspect;
+                drawHeight = canvas.height;
+                offsetX = (canvas.width - drawWidth) / 2;
+                offsetY = 0;
+            }
+
+            // キャンバスに画像を描画
+            context.drawImage(img, offsetX, offsetY, drawWidth, drawHeight);
+
+            // 画像の中央に四角形を描画
+            const squareSize = 100; // 四角形の元のサイズ (100px)
+            const scale = drawWidth / img.width; // 縮尺を計算
+            const scaledSquareSize = squareSize * scale; // 四角形の縮尺に合わせたサイズ
+            const squareX = (canvas.width - scaledSquareSize) / 2; // 中央に配置するX座標
+            const squareY = (canvas.height - scaledSquareSize) / 2; // 中央に配置するY座標
+
+            // 四角形の描画
+            context.strokeStyle = 'red'; // 四角形の枠線色を赤に設定
+            context.lineWidth = 2; // 線の太さ
+            context.strokeRect(squareX, squareY, scaledSquareSize, scaledSquareSize); // 四角形を描画
+        };
+    </script>
+</body>
+</html>
