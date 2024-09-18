@@ -1,0 +1,2 @@
+tab@raspberrypi:~ $ uname -a
+Linux raspberrypi 6.1.0-rpi7-rpi-v8 #1 SMP PREEMPT Debian 1:6.1.63-1+rpt1 (2023-11-24) aarch64 GNU/Linux
